@@ -1,0 +1,58 @@
+// 
+
+// Defines the syntax for the protocol buffer code. There is proto2 syntax as well. In this case we are using proto3 syntax.
+syntax="proto3";
+// Declares the package in use.This prevents naming conflict between different projects.
+package proto; 
+ 
+option go_package = "go-grpc-crud-api/proto";
+// Option go_package=”example.com/go-grpc-crud-api”
+// This option defines the import path of the package that will contain all the generated code for this file.
+
+ 
+//Passsing 1,2,3 for serlization of data.In protocol buffers data is structured as a message which is a logical record of information containing a series    of name-value pairs called fields. To define a message data structure, use the keyword message followed by the name of the message then end with {}.
+message Movie {
+   string id =1;
+   string title =2;
+   string genre =3;
+}
+ 
+message CreateMovieRequest {
+   Movie movie = 1;
+}
+message CreateMovieResponse {
+   Movie movie = 1;
+}
+message ReadMovieRequest{
+   string id =1;
+}
+message ReadMovieResponse{
+   Movie movie =1;
+}
+message ReadMoviesRequest{
+ 
+}
+message ReadMoviesResponse{
+   repeated Movie movies =1;
+}
+message UpdateMovieRequest{
+   Movie movie =1;
+}
+message UpdateMovieResponse{
+   Movie movie =1;
+}
+message DeleteMovieRequest{
+   string id =1;
+}
+message DeleteMovieResponse{
+   bool success =1;
+}
+ 
+ 
+service MovieService {
+   rpc CreateMovie(CreateMovieRequest) returns (CreateMovieResponse) {}
+   rpc GetMovie(ReadMovieRequest) returns (ReadMovieResponse) {}
+   rpc GetMovies(ReadMoviesRequest) returns (ReadMoviesResponse) {}
+   rpc UpdateMovie(UpdateMovieRequest) returns (UpdateMovieResponse) {}
+   rpc DeleteMovie(DeleteMovieRequest) returns (DeleteMovieResponse) {}
+}

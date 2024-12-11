@@ -1,0 +1,1 @@
+ALTER TABLE `movies` ADD `age_rating` ENUM('U/A 16+','Rated U','U/A 18+','U/A 13+','U/A 7+','Rated A') NOT NULL AFTER `genre`, ADD `start_cast` LONGTEXT NOT NULL AFTER `age_rating`, ADD `is_part` ENUM('0','1') NOT NULL AFTER `start_cast`, ADD `Thumbnails` LONGTEXT NOT NULL AFTER `is_part`;
